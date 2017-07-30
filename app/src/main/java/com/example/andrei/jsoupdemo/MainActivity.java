@@ -112,12 +112,11 @@ public class MainActivity extends Activity {
         protected Void doInBackground(Void... params) {
             try {
                 Document document = Jsoup.connect(url).get();
+                Element dateDerniereMiseJour = document.select("#secondary p").get(1);
+                String dateDerniereMiseJourText = dateDerniereMiseJour.text();
+                String tableDesTauxDeChanges = document.select("#secondary table").text();
+                desc = dateDerniereMiseJourText + "\n" + tableDesTauxDeChanges;
 
-                //Elements description = document.select("meta[name=description]");
-                //Elements description = document.select("div#secondary");
-                String content = document.getElementById("secondary").outerHtml();
-
-                desc = content;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
