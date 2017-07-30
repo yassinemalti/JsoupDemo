@@ -26,7 +26,7 @@ import java.net.URL;
 
 public class MainActivity extends Activity {
 
-    String url = "http://lifehacker.com/";
+    String url = "https://www.devise-dz.com/";
     ProgressDialog progressDialog;
 
     @Override
@@ -113,8 +113,11 @@ public class MainActivity extends Activity {
             try {
                 Document document = Jsoup.connect(url).get();
 
-                Elements description = document.select("meta[name=description]");
-                desc = description.attr("content");
+                //Elements description = document.select("meta[name=description]");
+                //Elements description = document.select("div#secondary");
+                String content = document.getElementById("secondary").outerHtml();
+
+                desc = content;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
